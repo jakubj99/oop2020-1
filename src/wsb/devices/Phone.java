@@ -2,6 +2,7 @@ package wsb.devices;
 
 import wsb.App;
 import wsb.creatures.Human;
+import wsb.devices.enums.PhoneSystem;
 
 import java.util.*;
 
@@ -11,38 +12,46 @@ public class Phone extends Device {
         IOS, ANDROID, WINDOWS_MOBILE
     }
 
-    private final OperatingSystem operatingSystem;
-
     final Double screenSize;
     public List<App> applications;
+    private final PhoneSystem phoneSystem;
 
-    public Phone(String producer, String model, Double screenSize) {
+    public static Phone createIPhone(String model, Double screenSize) {
+        return new Phone("Apple", model, screenSize, PhoneSystem.IOS);
+    }
+
+    public static Phone createAndroidPhone(String producer, String model, Double screenSize) {
+        return new Phone(producer, model, screenSize, PhoneSystem.ANDROID);
+    }
+
+    public static Phone createTrashPhone(String producer, String model, Double screenSize) {
+        return new Phone(producer, model, screenSize, PhoneSystem.WINDOWS_MOBILE);
+    }
+
+    private Phone(String producer, String model, Double screenSize, PhoneSystem phoneSystem) {
         super(producer, model);
         this.screenSize = screenSize;
+        this.phoneSystem = phoneSystem;
         applications = new LinkedList<>();
-        if (producer.equals("Apple")) {
-            this.operatingSystem = OperatingSystem.IOS;
-        } else if (producer.equals("nokia") || producer.equals("microsoft")) {
-            this.operatingSystem = OperatingSystem.WINDOWS_MOBILE;
-        } else {
-            this.operatingSystem = OperatingSystem.ANDROID;
-        }
     }
 
     @Override
     public void turnOn() {
-        switch (this.operatingSystem){
+        String systemMessage;
+        switch (phoneSystem) {
             case IOS:
-                System.out.println("apple sign");
+                systemMessage = "Apple system message";
                 break;
             case ANDROID:
-                System.out.println("little robot");
+                systemMessage = "Android system message";
                 break;
             case WINDOWS_MOBILE:
-                System.out.println("four blue rectangles");
+                systemMessage = "WP system message";
                 break;
+            default:
+                throw new RuntimeException("Phone not detected");
         }
-        System.out.println("phone is turned on");
+        System.out.println(systemMessage);
     }
 
 

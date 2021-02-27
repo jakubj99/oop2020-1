@@ -7,18 +7,15 @@ import wsb.devices.*;
 
 import java.sql.ResultSet;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
 
-
-
-        Human me = new Human(3, Gender.MAN);
-        me.sayImFirst();
-        System.out.println(Gender.WOMAN.name());
-
-
+        Phone iphone = Phone.createIPhone( "8", 4.7);
+        iphone.turnOn();
 
 
     }
