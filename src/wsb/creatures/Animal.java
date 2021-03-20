@@ -1,6 +1,7 @@
 package wsb.creatures;
 
-import wsb.database.Connector;
+import wsb.creatures.enums.FoodType;
+import wsb.creatures.interfaces.Feedable;
 
 import java.io.File;
 import java.sql.SQLException;

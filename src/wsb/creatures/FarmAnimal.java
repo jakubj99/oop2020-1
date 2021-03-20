@@ -1,6 +1,8 @@
 package wsb.creatures;
 
-public class FarmAnimal extends Animal implements Edible{
+import wsb.creatures.interfaces.Edible;
+
+public class FarmAnimal extends Animal implements Edible {
 
     public FarmAnimal(String species) {
         super(species);

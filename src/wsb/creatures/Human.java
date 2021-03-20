@@ -1,5 +1,7 @@
 package wsb.creatures;
 
+import wsb.creatures.enums.FoodType;
+import wsb.creatures.enums.Gender;
 import wsb.devices.Car;
 import wsb.devices.Phone;
 
