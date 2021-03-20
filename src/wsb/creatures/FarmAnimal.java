@@ -1,11 +1,12 @@
 package wsb.creatures;
 
+import wsb.creatures.enums.FoodType;
 import wsb.creatures.interfaces.Edible;
 
 public class FarmAnimal extends Animal implements Edible {
 
     public FarmAnimal(String species) {
-        super(species);
+        super(species, FoodType.ALL);
     }
 
     @Override
