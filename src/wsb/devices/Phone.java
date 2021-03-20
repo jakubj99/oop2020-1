@@ -98,4 +98,9 @@ public class Phone extends Device {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "Phone:  " + producer + " " + model;
+    }
+
 }
