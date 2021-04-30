@@ -1,9 +1,6 @@
 package wsb;
 
-import wsb.devices.Device;
-import wsb.devices.DieselCar;
-import wsb.devices.ElectricCar;
-import wsb.devices.Phone;
+import wsb.devices.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -12,7 +9,12 @@ import java.util.stream.Stream;
 public class Main {
     public static void main(String[] args) {
 
-    Map<String, Double> countryAreaMap = Stream.of(
+        Car ford = new DieselCar("VW", "Polo", 2019, 2.0);
+        ford.startACar();
+        ford.stopACar();
+
+
+        Map<String, Double> countryAreaMap = Stream.of(
             new AbstractMap.SimpleEntry<>("Czech Republic", 75d),
             new AbstractMap.SimpleEntry<>("Germany", 100d),
             new AbstractMap.SimpleEntry<>("Norway", 40d),

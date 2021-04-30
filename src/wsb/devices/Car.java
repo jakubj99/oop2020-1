@@ -1,5 +1,6 @@
 package wsb.devices;
 
+import com.sun.xml.internal.ws.api.pipe.Engine;
 import wsb.creatures.Human;
 import wsb.Soldable;
 
@@ -9,12 +10,13 @@ public abstract class Car extends Device implements Soldable, Comparable<Car> {
     public final Integer yearOfProduction;
     public final Double sizeOfAnEngine;
     public String plates;
+    private Engine engine;
 
     public Car(String producer, String model, Integer yearOfProduction, Double sizeOfAnEngine) {
         super(producer, model);
         this.yearOfProduction = yearOfProduction;
         this.sizeOfAnEngine = sizeOfAnEngine;
-
+        this.engine = new Engine(150d, sizeOfAnEngine, 0d);
     }
 
     abstract public void refuel();
@@ -22,6 +24,15 @@ public abstract class Car extends Device implements Soldable, Comparable<Car> {
     @Override
     public void turnOn() {
         System.out.println("car is ready to go");
+        startACar();
+    }
+
+    public void stopACar() {
+        engine.turnOff();
+    }
+
+    public void startACar() {
+        engine.turnOn();
     }
 
     public String toString() {
@@ -51,5 +62,28 @@ public abstract class Car extends Device implements Soldable, Comparable<Car> {
         System.out.println("great, transaction is done");
     }
 
+    private static class Engine {
+
+        private boolean isOn;
+        private Double horsePower;
+        private Double millage;
+        private Double volume;
+
+        public Engine(Double horsePower, Double millage, Double volume) {
+            this.horsePower = horsePower;
+            this.millage = millage;
+            this.volume = volume;
+        }
+
+        public void turnOn() {
+            isOn = true;
+            System.out.println("engine starts");
+        }
+
+        public void turnOff() {
+            isOn = false;
+            System.out.println("engine stops");
+        }
+    }
 
 }
