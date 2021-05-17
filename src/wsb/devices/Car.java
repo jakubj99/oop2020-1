@@ -1,6 +1,4 @@
 package wsb.devices;
-
-import com.sun.xml.internal.ws.api.pipe.Engine;
 import wsb.creatures.Human;
 import wsb.Soldable;
 
@@ -16,6 +14,7 @@ public abstract class Car extends Device implements Soldable, Comparable<Car> {
         super(producer, model);
         this.yearOfProduction = yearOfProduction;
         this.sizeOfAnEngine = sizeOfAnEngine;
+
         this.engine = new Engine(150d, sizeOfAnEngine, 0d);
     }
 
@@ -23,7 +22,7 @@ public abstract class Car extends Device implements Soldable, Comparable<Car> {
 
     @Override
     public void turnOn() {
-        System.out.println("car is ready to go");
+        System.out.println("car is switched on");
         startACar();
     }
 
@@ -50,16 +49,17 @@ public abstract class Car extends Device implements Soldable, Comparable<Car> {
             throw new Exception("seller don't have a car");
         }
         if(!buyer.hasAFreePlace()){
-            throw new Exception("bouer dont have a plase");
+
+            throw new Exception("buyer dont have a car");
         }
         if(buyer.cash < price){
-            throw new Exception("afwfwaawfawf");
+            throw new Exception("exception");
         }
         buyer.removeCar(this);
         seller.addCar(this);
         buyer.cash -= price;
         seller.cash += price;
-        System.out.println("great, transaction is done");
+        System.out.println("great success");
     }
 
     private static class Engine {
