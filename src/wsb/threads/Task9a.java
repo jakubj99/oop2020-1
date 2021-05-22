@@ -2,6 +2,13 @@ package wsb.threads;
 
 public class Task9a implements Runnable {
 
+    private final Finisher finisher;
+
+    public Task9a(Finisher finisher) {
+        this.finisher = finisher;
+    }
+
+
     @Override
     public void run() {
         System.out.println("Counting from 10 to 0");
@@ -13,6 +20,7 @@ public class Task9a implements Runnable {
             }
             secondPast();
         }
+        finisher.finishHim();
     }
 
     private void secondPast() {
