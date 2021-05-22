@@ -22,9 +22,9 @@ public class Main {
                 new RandomNumber(() -> System.out.println("#5"))
         ));
         System.out.println("And the winner is ");
-        futures.stream().map(winnerWrapperFuture -> {
+        futures.stream().map(winnerFuture -> {
             try {
-                return winnerWrapperFuture.get();
+                return winnerFuture.get();
             } catch (InterruptedException | ExecutionException e) {
                 throw new IllegalStateException(e);
             }
