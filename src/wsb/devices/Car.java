@@ -1,13 +1,18 @@
 package wsb.devices;
 import wsb.creatures.Human;
 import wsb.Soldable;
+import wsb.database.MapToSQL;
 
 import java.util.Comparator;
 
 public abstract class Car extends Device implements Soldable, Comparable<Car> {
+    @MapToSQL
     public final Integer yearOfProduction;
+    @MapToSQL
     public final Double sizeOfAnEngine;
+    @MapToSQL
     public String plates;
+    @MapToSQL
     private Engine engine;
 
     public Car(String producer, String model, Integer yearOfProduction, Double sizeOfAnEngine) {

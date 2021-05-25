@@ -1,5 +1,8 @@
 package wsb.devices;
 
+import wsb.database.MappedClass;
+
+@MappedClass
 public class ElectricCar extends Car {
     public ElectricCar(String producer, String model, Integer yearOfProduction) {
         super(producer, model, yearOfProduction, null);

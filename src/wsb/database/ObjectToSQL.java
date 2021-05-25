@@ -8,7 +8,13 @@ public class ObjectToSQL {
     private static final String INSERT_QUERY = "New %s was added to DB (%s) VALUES (%s);";
     private static final String DELIMITER = ", ";
 
+
+
     public String insert(Object objectToInsert) {
+        if (!objectToInsert.getClass().isAnnotationPresent(MappedClass.class)) {
+            return "";
+        }
+
         String className = objectToInsert.getClass().getSimpleName().toLowerCase();
 
         return String.format(INSERT_QUERY,
@@ -38,6 +44,6 @@ public class ObjectToSQL {
         Class<?> clazz = obj.getClass().getSuperclass();
         while (clazz!= null) {
             fields = Stream.concat(fields, Stream.of(clazz.getDeclaredFields()));
-            clazz = clazz.getSuperclass();}return fields;
+            clazz = clazz.getSuperclass();}return fields.filter(field -> field.isAnnotationPresent(MapToSQL.class));
     }
 }
