@@ -1,17 +1,21 @@
 package wsb;
 
-import wsb.database.ObjectToSQL;
-import wsb.devices.Car;
-import wsb.devices.DieselCar;
-import wsb.devices.ElectricCar;
+import wsb.genericTypes.SuperNumber;
 
 public class Main {
     public static void main(String[] args) {
-        Car car = new ElectricCar("Tesla", "Model S", 2019);
-        Car car1 = new DieselCar("Jeep", "wrangler", 1999, 3.2);
-        ObjectToSQL objectToSql = new ObjectToSQL();
-        System.out.println(objectToSql.insert(car));
-        System.out.println(objectToSql.insert(car1));
+        SuperNumber<Double> number = new SuperNumber<>(.5);
+        SuperNumber<Double> number1 = new SuperNumber<>(1.0);
+        SuperNumber<Double> number2 = new SuperNumber<>(1.5);
+
+        System.out.println(number.getDoub());
+        System.out.println(number.getInt());
+        System.out.println(number.isDoubEqInt());
+        System.out.println(number1.isDoubEqInt());
+        System.out.println(number.intEq(number1));
+        System.out.println(number.intEq(number2));
+        System.out.println(number.doubEq(number1));
+        System.out.println(number.doubEq(number2));
     }
 }
 
