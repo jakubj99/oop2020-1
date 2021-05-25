@@ -81,4 +81,8 @@ public class Container<E> implements Collection<E> {
 
     @Override
     public String toString() { return objects.toString(); }
+
+    List<E> getObjectsCopy() { return new ArrayList<>(objects); }
+
+    void setObjects(List<E> objects) { this.objects = objects; }
 }
